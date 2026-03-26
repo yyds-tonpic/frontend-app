@@ -17,4 +17,5 @@ jobs:
         with: 
           node-version: '22.x'
           cache: 'npm'
-      - run: node -v
+      - run: npm ci # clean install แทน npm install
+      - run: npm run lint

@@ -1,0 +1,15 @@
+name: Frontend Workshop Demo
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+      - 'bugfix/**'
+      - 'chore/**' 
+      - main # อย่าลืมลบ ถ้าใช้ flow ปกติ
+
+jobs:
+  job-1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello world"

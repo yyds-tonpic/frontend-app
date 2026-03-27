@@ -1,0 +1,21 @@
+name: Build and Deploy Docker
+
+on:
+  push:
+    tags:
+      - '*.*.*' #v1.0.0
+
+jobs:
+  build-image-and-push-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6 #Downfile มาทั้งหมด
+
+      - name: Build docker image and push to GitHub Registry
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: ${{ github.event.repository.name }}
+          registry: ghcr.io #ที่เก็บ Registry GitHub
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      

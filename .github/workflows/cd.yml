@@ -22,7 +22,7 @@ jobs:
       - name: Build project (production and dist folder)
         run: npm run build
       - name: Upload dist folder artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: dist-production
           path: dist
@@ -34,7 +34,7 @@ jobs:
       contents: write
     steps:
       - name: Download dist folder artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: dist-production
           path: dist

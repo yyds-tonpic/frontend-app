@@ -26,3 +26,22 @@ jobs:
         with:
           name: dist-production
           path: dist
+  auto-deploy-githun-page:
+    runs-on: ubuntu-latest
+    needs: build-prod-job
+    permissions:
+      contents: write
+    steps:
+      - name: Download dist folder artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist-production
+          path: dist
+      - run: ls dist
+      - uses: actions/checkout@v6
+      - name: Deploy to GitHub Page
+        uses: SerhiiKa/VuePagesAction@1.0.4
+        with:
+          username: ${{github.actor}}
+          reponame: ${{github.event.repository.name}}
+          token: ${{secrets.GITHUB_TOKEN}}
